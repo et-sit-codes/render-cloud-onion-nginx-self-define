@@ -4,9 +4,6 @@ import subprocess
 import time
 import os
 
-PREV_CONFIG = open("./nginx_prev.conf", "r", encoding="utf-8").read()
-NEXT_CONFIG = open("./nginx_next.conf", "r", encoding="utf-8").read()
-
 NGINX_PATH = os.path.expanduser("~/nginx.conf")
 
 CMDS = [

@@ -12,11 +12,6 @@ PREV_CONFIG = (
     .read()
     .replace("$ENV_PORT", ENV_PORT)
 )
-NEXT_CONFIG = (
-    open("./nginx_next.conf", "r", encoding="utf-8")
-    .read()
-    .replace("$ENV_PORT", ENV_PORT)
-)
 
 
 def check_status():
@@ -50,7 +45,13 @@ boot_nginx(PREV_CONFIG)
 
 while True:
     if check_status():
-        boot_nginx(NEXT_CONFIG)
+        boot_nginx(
+            (
+                open("./nginx_next.conf", "r", encoding="utf-8")
+                .read()
+                .replace("$ENV_PORT", ENV_PORT)
+            )
+        )
         print("booted nginx")
         break
     time.sleep(0.3)
